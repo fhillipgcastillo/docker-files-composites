@@ -26,6 +26,18 @@ services:
       - HUB_HOST=selenium-hub
     networks:
       - grid
+  rabbit:
+    image: rabbitmq:3-management
+    container_name: localrabbit
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    depends_on:
+      - selenium-hub
+    environment:
+      - HUB_HOST=selenium-hub
+    networks:
+      - grid
 networks:
   grid:
     driver: bridge
